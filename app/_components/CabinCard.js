@@ -7,6 +7,8 @@ function CabinCard({ cabin }) {
     <div className="flex border-primary-800 border">
       <Image
         src={image}
+        width={60}
+        height={60}
         alt={`Cabin ${name}`}
         className="flex-1 border-r border-primary-800"
       />
