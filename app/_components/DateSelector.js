@@ -31,6 +31,9 @@ function DateSelector({ cabin, bookedDates, settings }) {
       <DayPicker
         onSelect={setRange}
         selected={range}
+        classNames={{
+          months: "",
+        }}
         className="flex justify-center flex-col items-center"
         mode="range"
         startMonth={new Date()}

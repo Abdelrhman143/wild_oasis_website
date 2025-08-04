@@ -1,7 +1,28 @@
-function DeleteReservation({ bookingId }) {
+"use client";
+
+import { useTransition } from "react";
+import { deleteReservation } from "../_lib/actions";
+import SpinnerMini from "./SpinnerMini";
+
+function DeleteReservation({ onDeleteReservation, bookingId }) {
+  const [isPending, startTransition] = useTransition();
+  function handleDelete() {
+    if (confirm("are you sure you want to delete this reservation?")) {
+      startTransition(() => onDeleteReservation(bookingId));
+    }
+  }
   return (
-    <button className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900">
-      <span className="mt-1">Delete</span>
+    <button
+      onClick={handleDelete}
+      className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
+    >
+      {isPending ? (
+        <span>
+          <SpinnerMini />
+        </span>
+      ) : (
+        <span className="mt-1">Delete</span>
+      )}
     </button>
   );
 }
